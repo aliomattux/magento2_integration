@@ -1,0 +1,60 @@
+<odoo>
+
+        <menuitem name="Jobs"
+        id="menu_mage_jobs"
+        parent="menu_mage_core"
+        sequence="40"/>
+
+        <record id="view_mage_job_tree" model="ir.ui.view">
+            <field name="name">Mage Job Tree</field>
+            <field name="model">mage.job</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mage_job_form" model="ir.ui.view">
+            <field name="name">External Jobs Form</field>
+            <field name="model">mage.job</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="button_execute_job" type="object" string="Execute Job" />
+                        <button name="button_schedule_mage_job" type="object" string="Schedule this Job" attrs="{'invisible': [('scheduler', '!=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" class="oe_inline" />
+                        </h1>
+                        <group colspan="2" >
+                            <field name="mage_instance" />
+                            <field name="mapping" />
+                        </group>
+                        <group colspan="2" name="standard_configuration">
+                            <separator string="Job Configuration"/>
+                            <field name="scheduler" readonly="1"/>
+                            <newline/>
+                            <field name="python_model" required="1" />
+                            <field name="python_function_name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mage_job" model="ir.actions.act_window">
+            <field name="name">Jobs</field>
+            <field name="res_model">mage.job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="view_mage_job_tree"/>
+        </record>
+
+        <menuitem action="action_mage_job"
+        id="menu_mage_job"
+        parent="menu_mage_jobs"
+        sequence="10"/>
+
+</odoo>

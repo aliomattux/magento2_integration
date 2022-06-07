@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mage_setup,mage.setup,model_mage_setup,,1,1,1,1
+access_mage_job,mage.job,model_mage_job,,1,1,1,1
+access_mage_website,mage.website,model_mage_website,,1,1,1,1
+access_mage_store_group,mage.store.group,model_mage_store_group,,1,1,1,1
+access_mage_store_view,mage.store.view,model_mage_store_view,,1,1,1,1

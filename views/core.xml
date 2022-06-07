@@ -1,0 +1,68 @@
+<odoo>
+        <menuitem name="Magento 2"
+        id="menu_mage_core"
+        parent="integrator.menu_integrator"
+        sequence="20"/>
+
+        <menuitem name="Configuration"
+        id="menu_mage_configuration"
+        parent="menu_mage_core"
+        sequence="100"/>
+
+        <record id="view_mage_setup_tree" model="ir.ui.view">
+            <field name="name">Mage Setup Tree</field>
+            <field name="model">mage.setup</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="url" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mage_setup_form" model="ir.ui.view">
+            <field name="name">Mage Setup Form</field>
+            <field name="model">mage.setup</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="button_refresh_access_token" type="object" string="Refresh Access Token" />
+                    </header>
+                    <sheet>
+                        <h1>
+                            <span>Configure your Magento Integration</span>
+                        </h1>
+                        <br/>
+                        <group string="Integration Name">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </group>
+                        <group colspan="4">
+                            <field name="url" />
+                            <field name="debug_mode" />
+                        </group>
+                        <group string="Credentials">
+                            <field name="username"/>
+                            <field name="password" password="1" />
+                            <field name="token" password="1" />
+                            <field name="token_expiration" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mage_setup" model="ir.actions.act_window">
+            <field name="name">Magento Setup</field>
+            <field name="res_model">mage.setup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="view_mage_setup_tree"/>
+        </record>
+
+        <menuitem action="action_mage_setup"
+        id="menu_mage_setup"
+        parent="menu_mage_configuration"
+        sequence="50"/>
+
+</odoo>
